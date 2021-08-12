@@ -1,0 +1,6 @@
+What is Factory?
+- A Creational Design Pattern.
+- A component responsible solely for the wholesale (not piecewise) creation of objects.
+- is a helper function for making struct instances.
+- It is any entity that can take care of object creation.
+- You can return either concrete type or abstraction.

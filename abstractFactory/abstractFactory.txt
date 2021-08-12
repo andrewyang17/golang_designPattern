@@ -1,0 +1,53 @@
+What is Abstract Factory?
+- Abstract Factory is a creational design pattern
+  that lets you produce families of related object without
+  specifying their concrete types.
+
+Intuition
+- Apple & Windows Factories
+- Create a Abstract Factory (interface with methods that returning interface, exp: Store, getPhone -> Phone)
+- Create a Factory function that will return Abstract Factory interface type with conditional operation,
+  just tell what you brand do you need, Factory function will return an abstraction (interface)
+  with underlying type (Apple or Window) that specified by client.
+- Call the methods of the underlying type, which should be returning an interface too,
+  the underlying type is a common object that shared between Apple & Windows.
+  (phone, computer)
+
+
+Applicability
+- Use the Abstract Factory when your code needs to work with
+  various families of related products. But you don't want it to depend on the
+  concrete types of those products. They might be unknown beforehand, or you simply
+  want to allow for future extensibility.
+
+- The Abstract Factory provides you with an interface for creating objects from each type
+  of the product family. As long as your code creates objects via this interface,
+  you don’t have to worry about creating the wrong variant of a product
+  which doesn’t match the products already created by your app.
+
+Implementation
+1. Map out a matrix of distinct product types versus variants of these products.
+2. Declare abstract product interfaces for all product types.
+   Then make all concrete product classes implement these interfaces.
+3. Declare the abstract factory interface with a set of creation methods for all abstract products.
+4. Implement a set of concrete factory classes, one for each product variant.
+
+Pros:
+- You avoid tight coupling between concrete products and client code.
+- The client can work with any product variant as long as it communicates with their
+- objects via abstract interfaces.
+- Open/Closed Principle,
+  You can introduce new variants of products without breaking existing client code.
+
+Cons:
+- The code may become more complicated than it should be,
+  since a lot of new interfaces and types are introduced along with the pattern.
+
+Relationship with Other Patterns
+- Many designs start by using Factory Method, and evolve toward Abstract Factory, Prototype, or Builder.
+- Abstract Factory returns the product immediately, whereas Builder lets you run some additional construction steps before fetching the product.
+- Abstract Factory can serve as an alternative to Facade when you only want to hide the way the subsystem objects are created from the client code.
+- You can use Abstract Factory along with Bridge.
+  This pairing is useful when some abstractions defined by Bridge can only work with specific implementations.
+  In this case, Abstract Factory can encapsulate these relations and hide the complexity from the client code.
+- Abstract Factories, Builders and Prototypes can all be implemented as Singletons.

@@ -1,0 +1,17 @@
+In both cases you have one object embedded within another,
+but what you're trying to accomplish is arguably different (different intent).
+
+Using the composite pattern often leads to also using the decorator pattern.
+
+Composite:
+Composite gives an unified interface to a leaf and composite.
+Example: classic windows folders and files.
+        Windows folders are composites. files are leaves.
+        A double click on either of them opens the file/folder - double click is unified interface.
+
+Decorator:
+Decorator decorator gives additional feature to leaf, while giving unified interface.
+Example: Buffered io - java.io.FileWriter and java.io.BufferedWriter both extend java.io.Writer.
+        java.io.BufferedWriter is composite and FileWriter is leaf.
+        BufferedWriter adds additional responsibility (or feature) of buffering to FileWriter.
+        write() method is unified interface, whereas buffering is additional feature.
