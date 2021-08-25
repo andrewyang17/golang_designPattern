@@ -1,0 +1,36 @@
+What is Decorator?
+- Decorator is a structural design pattern that lets you attach
+  new behaviors to object by placing these objects inside special wrapper
+  objects that contain the behaviors.
+- A wrapper is an object that can be linked with some target object.
+- The wrapper may alter the result by doing something either before or after
+  it passes the request to the target.
+
+Applicability
+- Use the Decorator pattern when you need to be able to assign extra behaviors
+  to objects at runtime without breaking the code that uses these objects.
+
+Implementation
+1. Make sure your business domain can be represented to both the primary component
+   with multiple optional layers over it.
+2. Figure out what methods are common to both the primary component and the
+   optional layers. Create a component interface and declare those methods there.
+3. Create a concrete component class and define the base behavior in it.
+4. Create decorators by extending the concrete component via the common interface.
+5. The client code must be responsible for composing the decorators in the way
+   the client needs, or they may to create decorators to adapt.
+
+Pros:
+- You can extend an object's behavior without making a new subclass.
+- You can add or remove responsibilities from an object at runtime.
+- You can combine several behaviors by wrapping an object into multiple decorator.
+- Single Responsibility Principle.
+
+Relationship with Other Patterns
+- Adapter changes the interface of an existing object,
+  Decorator enhances an object without changing it interface.
+- Chain of Responsibility and Decorator have very similar class structures.
+  Both pattern pass the execution through a series of objects.
+  CoR execute arbitrary operations independently of each other.
+  They can stop passing the request further at any point.
+  Decorator aren't allowed

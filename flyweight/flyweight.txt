@@ -1,0 +1,48 @@
+What is Flyweight?
+- Flyweight is a structural design pattern that lets you fit more
+  objects into the available amount of RAM by sharing common parts of state
+  between multiple objects instead of keeping all of the data in each object.
+- The Flyweight suggests that you stop storing the extrinsic state inside the object.
+  Instead you should pass this state to specific methods which rely on it.
+  Only the intrinsic state stays within the object, letting you reuse in different contexts.
+- An object that stores the intrinsic state is called Flyweight.
+- Since the same Flyweight objects can be used in different contexts, you have to make sure that
+  its state can't be modified. A Flyweight should initialize its state just once,
+  via constructor parameters, it shouldn't expose any public fields to other objects.
+- The Flyweight pattern is merely an optimization.
+
+
+Applicability
+- Use the Flyweight pattern only when your program must support a huge number of objects
+  which barely fit into available RAM. It's useful when:
+  1. An application needs to spawn a huge number of similar objects.
+  2. Drain all available RAM on a target device.
+  3. Objects contains duplicate states which can be extracted and shared between multiple objects.
+
+Implementation
+1. Divide fields of a class that will become a Flyweight into 2 parts:
+   - Intrinsic State: the fields that contain unchanging data duplicated across many objects.
+   - Extrinsic State: the fields that contain contextual data unique to each object.
+2. Make sure the intrinsic state in the class is immutable, they should take their initial values
+   only inside the constructor.
+3. Go over methods that use fields of the extrinsic state, introduce a new parameter and use it
+   instead of the field.
+4. Optionally, you can create a Factory class to manage the pool of Flyweights.
+   It should check for an existing Flyweight before creating a new one.
+   Once the Factory is in place, client must only request Flyweights through it.
+   They should describe the desired Flyweight by passing it intrinsic state to the Factory.
+
+Pros:
+- You can save lots of RAM, assuming your program has tons of similar objects.
+
+Cons:
+- The code becomes much more complicated. New team members will always be wondering
+  why the state of an entity was separated in such a way.
+
+Relationship with Other Patterns
+- Flyweight shows how to make lots of little objects,
+  Facade shows how to make a single object that represents an entire subsystem.
+- Flyweight would resemble Singleton if you somehow managed to reduce all shared states of
+  the objects to just one flyweight object. But there should be only one Singleton instance,
+  whereas a Flyweight can have multiple instances with different intrinsic state.
+- The Singleton object can be mutable, But Flyweight object are immutable.

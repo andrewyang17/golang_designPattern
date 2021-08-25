@@ -1,0 +1,81 @@
+What is Composite?
+- Composite is a structural design pattern that allows composing objects into
+  a tree-like structure and work with it as if it was a singular object.
+
+Problem
+- Using the Composite pattern makes sense only when the core model of your app
+  can be represented as a tree.
+- Say you decide to create an ordering system, orders could contain Products,
+  as well as Boxes stuffed with Products and other Boxes, how would you determine
+  the total price of such an order?
+- You could try the direct approach: unwrap all the boxes, go over all the products
+  and then calculate the total. The would be doable in real world, but in a program,
+  it's not as simple as running a loop.
+- You have to know the classes of Products and Boxes you're going through,
+  the nesting level of the boxes and other nasty details beforehand.
+
+Solution
+- The Composite pattern suggests to work with Products and Boxes through a
+  common interface which declares a method for calculating the total price.
+- For a product, it'd simply return the product's price.
+  For a box, it'd go over each item the box contains, ask its price and then
+  return a total for this box. If one of the items were a smaller box, that box
+  would also start going over its contents and so on, until the prices of all
+  inner components were calculated.
+- The greatest benefit of this approach is that you don't need to care about
+  the concrete classes of objects that compose the tree.
+- You can treat them all the same via the common interface.
+  When you call a method, the objects themselves pass the request down the tree.
+
+Applicability
+- Use the Composite when you have to implement a tree-like object structure.
+  It provides you two basic element types that share a common interface,
+  simple leaves and complex containers.
+- Use the pattern when you want the client code to treat both simple and complex
+  element uniformly. Using this interface, the client doesn't have to worry about
+  the concrete class of the objects it works with.
+
+Implementation
+1. Make sure that the core model of your app can be represented as a tree structure.
+2. Declare the common interface with a list of methods that make sense for both
+   simple and complex components.
+3. Create a container class to represent complex elements.
+   In this class, provide an array field for storing references to sub elements.
+   The array must be able to store both leaves and containers, so make sure
+   it's declared with the component interface type.
+4. While implementing the methods of the components interface, remember that
+   a container is supposed to be delegating most of the works to sub-elements.
+5. Finally, defined the methods for adding and removal of child elements in the container.
+
+Pros:
+- You can work with complex tree structures more conveniently:
+  use polymorphism and recursion to your advantage.
+- Open/Closed Principle. You can introduce new element types into the app
+  without breaking the existing code.
+
+Cons:
+- It might be difficult to provide a common interface for classes whose functionality
+  offers too much. In certain scenarios, you'd need to overgeneralize the
+  component interface, making it harder to comprehend.
+
+Relationship with Other Patterns
+- You can use Builder when creating complex Composite trees because
+  you can program its construction steps to work recursively.
+- Chain of Responsibility is often in conjunction with Composite.
+  In this case, when a leaf component gets a request, it may pass it
+  through the chain of all of the parent components down to the
+  root of the object tree.
+- You can use Iterator to traverse Composite trees.
+- You can use Visitor to execute an operation over an entire Composite tree.
+- You can implemented shared leaf nodes of the Composite tree as Flyweights
+  to save some RAM.
+- Composite and Decorator have similar structure diagrams since both rely on
+  recursive composition to organize an opened number of objects.
+  A Decorator is like a Composite but only has one child component.
+  Decorator adds additional responsibilities to the wrapped object, while
+  Composite just "sums up" its children results.
+  You can use Decorator to extend the behavior of a specific object in the
+  Composite tree.
+- Designs that make heavy use of Composite and Decorator can often benefits from
+  using Prototype. Applying the pattern lets you clone complex structures instead of
+  re-constructing them from scratch.

@@ -1,5 +1,6 @@
 package main
 
+// bridge
 type director struct {
 	builder iBuilder
 }

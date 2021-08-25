@@ -1,53 +1,61 @@
-What is Abstract Factory?
-- Abstract Factory is a creational design pattern
-  that lets you produce families of related object without
-  specifying their concrete types.
+What is Builder?
+- Builder is a creational design pattern that lets you construct
+  complex objects step by step. The pattern allows you to produce
+  different types and representations of an object using the
+  same construction code.
 
-Intuition
-- Apple & Windows Factories
-- Create a Abstract Factory (interface with methods that returning interface, exp: Store, getPhone -> Phone)
-- Create a Factory function that will return Abstract Factory interface type with conditional operation,
-  just tell what you brand do you need, Factory function will return an abstraction (interface)
-  with underlying type (Apple or Window) that specified by client.
-- Call the methods of the underlying type, which should be returning an interface too,
-  the underlying type is a common object that shared between Apple & Windows.
-  (phone, computer)
+Problem
+- Giant constructor call, monstrous constructor with lots of parameters,
+  scattered all over the client code.
+- Extend class / embedding types to cover all combinations of the parameters,
+  end up a considerable number of subclasses / subtypes.
 
+Solution
+- Builder pattern suggest to extract the object construction code out of its own
+  class and move it to separate objects called builders.
+- Some of the construction steps might require different implementation when
+  you need to build various representations of the product.
+- Director (optionally), defines the order in which to execute the building steps, while
+  the builder provides the implementation for those steps. The director class might be
+  a good place to put various construction routines so you can reuse them
+  across your program. It completely hides the detail of product construction
+  from the client, the client only needs to associate a builder with a director.
 
 Applicability
-- Use the Abstract Factory when your code needs to work with
-  various families of related products. But you don't want it to depend on the
-  concrete types of those products. They might be unknown beforehand, or you simply
-  want to allow for future extensibility.
-
-- The Abstract Factory provides you with an interface for creating objects from each type
-  of the product family. As long as your code creates objects via this interface,
-  you don’t have to worry about creating the wrong variant of a product
-  which doesn’t match the products already created by your app.
+- Use the Builder pattern to get rid of a "telescopic constructor".
+- Use the Builder pattern when you want your code to be able to create different
+  representations of some product involve similar steps that differ
+  only in the details (stone and wooden houses).
+- Use the Builder to construct Composite trees or other complex objects.
+- A builder doesn't expose the unfinished product while running constructions steps.
+  This prevent the client code from fetching an incomplete result. (Use Director)
 
 Implementation
-1. Map out a matrix of distinct product types versus variants of these products.
-2. Declare abstract product interfaces for all product types.
-   Then make all concrete product classes implement these interfaces.
-3. Declare the abstract factory interface with a set of creation methods for all abstract products.
-4. Implement a set of concrete factory classes, one for each product variant.
+1. Make sure you clearly define the common construction steps for building all
+   available product representations.
+2. Declare these steps in the base builder interface.
+3. Create a concrete builder class for each of the product representations and implement
+   their construction steps.
+4. Think about creating a director class.
+5. Client creates both builder and the director objects, then passed the builder object
+   to director via function parameter of the construction method of the director or
+   via parameter of the director's constructor.
+6. Construction result can be obtained directly from the director or client
+   fetch the result from the builder.
 
 Pros:
-- You avoid tight coupling between concrete products and client code.
-- The client can work with any product variant as long as it communicates with their
-- objects via abstract interfaces.
-- Open/Closed Principle,
-  You can introduce new variants of products without breaking existing client code.
+- Single Responsibility Principle.
+- Reuse the construction code when building various representations of products.
+- Construct objects step by step, defer construction steps or run steps recursively.
 
 Cons:
-- The code may become more complicated than it should be,
-  since a lot of new interfaces and types are introduced along with the pattern.
+- Complexity increases.
 
 Relationship with Other Patterns
-- Many designs start by using Factory Method, and evolve toward Abstract Factory, Prototype, or Builder.
-- Abstract Factory returns the product immediately, whereas Builder lets you run some additional construction steps before fetching the product.
-- Abstract Factory can serve as an alternative to Facade when you only want to hide the way the subsystem objects are created from the client code.
-- You can use Abstract Factory along with Bridge.
-  This pairing is useful when some abstractions defined by Bridge can only work with specific implementations.
-  In this case, Abstract Factory can encapsulate these relations and hide the complexity from the client code.
-- Abstract Factories, Builders and Prototypes can all be implemented as Singletons.
+- Abstract Factory returns the product immediately, whereas Builder lets you
+  run some additional construction steps before fetching the product.
+- Can use Builder when creating complex Composite trees because you can program
+  its construction steps to work recursively.
+- You can combine Builder with Bridge, director class plays the role of the abstraction,
+  while different Builders acts as implementations.
+- Can be implemented as Singletons.

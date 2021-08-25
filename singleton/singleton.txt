@@ -1,0 +1,44 @@
+What is Singleton?
+- Singleton is a creational design pattern that
+  lets you ensure that a class has only one instance, while
+  providing a global access point to this instance.
+
+Solves Problem
+- Ensure that a class has just a single instance.
+  Control access to some shared resources. (database or a file)
+  Imagine that you created an object, but after a while decided to create
+  a new one. Instead of receiving a fresh object, you'll get the one that you already created.
+- Provide a global access point to that instance.
+  Singleton pattern lets you access some object from anywhere in the program.
+  However you have to protect that instance from being overwritten by other code.
+
+Solution & Implementation
+- Make the default constructor private, to prevent other objects/client from calling it.
+- Check if the access point is empty first time around, and then check again
+  after the lock is acquired.
+- Create a single instance inside the init function (only called once per file in a package).
+- Use sync.Once, to perform the operation once.
+
+Applicability
+- Use the Singleton when a class in your program should have just a single instance
+- available to all clients.
+- Use the Singleton when you need stricter contorl over global variables.
+
+Pros:
+- Single Responsibility Principle.
+- Reuse the construction code when building various representations of products.
+- Construct objects step by step, defer construction steps or run steps recursively.
+
+Cons:
+- Can mask bad design, the components of the program know too much about each other.
+- Requires special treatment in a multi-threaded environment so that multiple threads
+  won't create a singleton object several times.
+
+Relationship with Other Patterns
+- A Facade class can often be transformed into a Singleton since a single Facade
+  object is sufficient in most cases.
+- Flyweight would resemble Singleton if you somehow managed to
+  reduce all shared states of the objects to just one flyweight object.
+  But there are two fundamental differences between these two,
+  1. Flyweight class can have multiple instances with different intrinsic states.
+  2. Flyweight objects are immutable (Singleton can be mutable).

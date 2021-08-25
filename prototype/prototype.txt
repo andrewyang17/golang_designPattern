@@ -1,0 +1,54 @@
+What is Prototype?
+- Prototype is a creational design pattern that lets you copy existing object
+  without making your code dependent on their classes.
+
+Problem
+- Not all object can be copied because some of the object's fields may be private
+  and not visible from outside of the object itself.
+- Since you have to know the object's class to create a duplicate, your code
+  becomes dependent on that class.
+
+Solution
+- The Prototype pattern delegaqtes the cloning process to the actual objects that
+  are being cloned.
+- The pattern declares a common interface for all objects that support cloning.
+- This interface lets you clone an object without coupling your code to the
+  class of that object, usually such interface contains just a single clone method.
+  The method creates an object of the current class and carries over all of the field
+  values of the old object into the new one. You can even copy private fields because
+  object itself able to access private fields.
+- An object that supports cloning is called a Prototype.
+
+Applicability
+- Use the Prototype when your code shouldn't depend on the concrete classes
+  of objects that you need to copy.
+
+Implementation
+1. Create a Prototype interface and declare the clone method.
+2. Add the clone method to classes that want to implement Prototype.
+3. Optionally, create a centralized protoype registry to store a catalog of
+   frequently used prototypes.
+4. You can implement the registry as a new factory class. It stores a set of pre-built objects
+   that are ready to be copied, the simplest prototype registry is a name -> prototype
+   hash map. The method should search for a prototype based on search criteria that
+   the client code passes. After the appropriate prototype is found,
+   the registry should clone it and return the copy to the client.
+
+Pros:
+- You can clone objects without coupling to their concrete classes.
+- You can get rid of repeated initialization code in favor of cloning pre-built prototypes.
+- You can produce complex objects more conveniently.
+
+Cons:
+- Cloning complex objects that have circular references might be very tricky.
+
+Relationship with Other Patterns
+- Abstract Factory are often based on a set of Factory Methods, but you can use
+  Prototype to compose the method on these classes.
+- Designs that make heavy use of Composite and Decorator can often benefit from using
+  Prototype. Applying the pattern lets you clone complex structures instead of
+  res-constructing them from scratch.
+- Sometimes Prototype can be a simpler alternative to Mementos. This works
+  if the object, the state of which you want to store in the history, is fairly
+  straightforward and doesn't link to external resources, or the links are easy to
+  reestablish.

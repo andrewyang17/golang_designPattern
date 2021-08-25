@@ -1,0 +1,62 @@
+What is Adapter?
+- Adapter is a structural design pattern (how to assemble objects and classes
+  into a large structures while keeping these structures flexible and efficient),
+  which allows incompatible object to collaborate.
+- It acts as a wrapper between two objects.
+- It catches calls for one object and transforms them to format and
+  interface recognizable by the second object.
+
+Problem
+- Imagine that you're creating a stock market monitoring app.
+  The app downloads the stock data from multiple sources in XML format,
+  and then displays nice-looking charts and diagram for the users. At some point,
+  you decide to improve the app by integrating a smart 3rd-party analytics library.
+  But there's a catch, the analytics library only works with data in JSON format.
+
+Solution
+- Create an adapter. A special object that converts the interface of one object
+  so that another object can understand it.
+- An adapter wraps one of the objects to hide the complexity of conversion happening
+  behind the scenes.
+- Adapters can not only convert data into various formats but can also
+  help object with different interfaces collaborate.
+- It able to work with both the client and the service.
+
+Applicability
+- Use the Adapter when you want to use some existing class but its interface
+  isn't compatible with the rest of your code.
+- Use when you want to reuse several existing subclasses that lack some
+  common functionality that can't be added to the superclass (be careful with
+  the design, it would smells bad, could be using Decorator pattern).
+
+Implementation
+1. Make sure that you have at least 2 classes with incompatible interfaces.
+2. Declare the client interface and describe how clients communicate with the service.
+3. Create the adapter class and make it follow the client interface.
+4. Add a field to the adapter class to store a reference to the service object.
+   The common practice is to initialize this field via the constructor, but
+   sometimes it's more convenient to pass it to the adapter when calling its methods.
+5. Implement all methods of the client interface in the adapter class.
+6. Client should use the adapter via the client interface. This will let you change
+   or extend the adapters without affecting the client code.
+
+Pros:
+- Single Responsibility Principle. Separate the business logic of the program.
+- Open/Closed Principle. Introduce new types of adapters into the program without
+  breaking the the existing code.
+
+Cons:
+- The overall complexity of the code increases.
+
+Relationship with Other Patterns
+- Bridge is usually designed up-front.
+- Adapter provides a different interface to the wrapped object,
+  Decorator provides an enhanced interface to the wrapped object,
+  Proxy provides the same interface to the wrapped object.
+- Facade defines a new interface for existing objects, whereas
+  Adapter tries to make the existing interface usable.
+  Adapter usually wraps just one object, while
+  Facade works with an entire subsystem of objects.
+- Bridge, State, Strategy, Adapter have very similar structures. Indeed
+  all of these patterns are based on composition, which is delegating work
+  to other objects. However, they all solve different problems.
