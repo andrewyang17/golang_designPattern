@@ -1,0 +1,15 @@
+What is State?
+- State allows an object to change the behavior when its internal state changes.
+- The pattern extracts state-related behaviors into separate state classes and forces
+  the original object to delegate the work to an instance of these classes,
+  instead of acting on its own.
+- It's a pattern in which the object's behavior is determined by its state.
+  An object transitions from one state to another.
+- The State design pattern should be used when the object can be in many different states
+  and depending upon incoming request the object needs to change its current state.
+- It suggests that you create new classes for all possible states of an object an extract
+  all state-specific behaviors into these classes.
+- It's used when you have an object that behaves differently depending on its current state.
+
+Reference
+- https://refactoring.guru/design-patterns/state

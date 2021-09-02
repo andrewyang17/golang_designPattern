@@ -1,0 +1,14 @@
+What is Strategy?
+- Strategy turns a set of behaviors into objects and make them interchangeable
+  inside original context object.
+- It separates an algorithm into its 'skeleton' and concrete implementation steps,
+  which can be varied at run-time.
+- The original object (context) holds a reference to a strategy object and delegates it
+  executing the behavior.
+- It suggests creating a family of the algorithm with each algorithm having its own class.
+- Define an algorithm at a high level.
+  Define the interface you expect each strategy to follow.
+  Support the injection of the strategy into the high-level algorithm.
+
+Reference
+- https://refactoring.guru/design-patterns/strategy

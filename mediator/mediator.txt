@@ -1,0 +1,11 @@
+What is Mediator?
+- Mediator reduces coupling between components of a program
+  by making them communicate indirectly, through a special mediator object.
+- A component that facilitates communication between other components without them
+  necessarily being aware of each other or having direct (reference) access to each other.
+- Media engages in bidirectional communication with its connected components.
+- Mediator has methods the components can call,
+  components have methods the mediator can call.
+
+Reference
+- https://refactoring.guru/design-patterns/mediator

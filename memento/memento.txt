@@ -1,0 +1,13 @@
+What is Memento?
+- Memento lets you save and restore the previous state of an object without revealing
+  the details of its implementation.
+- It allows making snapshot of an object's state and restoring it in future.
+- It is used to roll back states arbitrarily.
+- Memento should not be mutable, and in actual fact, it can be problematic if it does,
+ because if it exposes some state, then somebody could modify it and then return the system to
+ the state in which it never was.
+- It can be used to implement undo/redo if your system is simple, it is
+  better handled by the command design pattern.
+
+Reference
+- https://refactoring.guru/design-patterns/memento

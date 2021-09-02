@@ -33,4 +33,3 @@ Relationship with Other Patterns
   Both pattern pass the execution through a series of objects.
   CoR execute arbitrary operations independently of each other.
   They can stop passing the request further at any point.
-  Decorator aren't allowed

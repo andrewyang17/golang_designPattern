@@ -1,0 +1,14 @@
+What is Observer?
+- Observer allows some objects to notify other objects about changes in their state.
+- It lets you define a subscription mechanism to notify multiple objects about any
+  events that happen to the object they're observing.
+- The object that has some interesting state is often called subject/publisher/observable.
+- All other objects that want to track changes to the publisher's state are
+  called subscribers/observer.
+- We need to be informed when certain things happen:
+  - Object's field changes
+  - Object does something
+  - Some external event occurs
+
+Reference
+: https://refactoring.guru/design-patterns/observer

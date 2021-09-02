@@ -22,7 +22,7 @@ Solution & Implementation
 Applicability
 - Use the Singleton when a class in your program should have just a single instance
 - available to all clients.
-- Use the Singleton when you need stricter contorl over global variables.
+- Use the Singleton when you need stricter control over global variables.
 
 Pros:
 - Single Responsibility Principle.

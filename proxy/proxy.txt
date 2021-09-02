@@ -1,0 +1,67 @@
+What is Proxy?
+- Proxy is a structural design pattern that lets you provide a substitute
+  or placeholder for another object.
+- A Proxy controls access to the original object, allowing you to perform
+  something either before or after the request gets through to the original object.
+
+Applicability
+1. Lazy Initialization (Virtual Proxy)
+   - When you have a heavyweight service object that wastes system resources by
+     being always up, even though you only need it from time to time.
+   - Instead of creating the object when the app launches, you can delay the 
+     object's initialization to a time when it's really needed.
+2. Access Control (Protection Proxy)
+   - When you want only specific clients to be able to use the service object.
+   - The Proxy can pass the request to the service object only if the 
+     client's credentials match some criteria.
+3. Location Execution of a Remote Service (Remote Proxy)
+   - When the service object is located on a remote server.
+   - The Proxy passes the client request over the network,
+     handling all nasty details of working with the network.
+4. Logging Request (Logging Proxy)
+   - When you want to keep a history of requests to the service object.
+   - The Proxy can log each request before passing it to the service.
+5. Caching Request Results (Caching Proxy)
+   - This is when you need to cache results of client requests, and
+     manage the lifecycle of this cache, especially if results are quite large.
+6. Smart Reference
+   - When you need to be able to dismiss a heavyweight object one there are
+     no clients that use it.
+   - The Proxy can keep track of clients, from time to time, the Proxy may go
+     over the clients and check whether they are still active. If the client 
+     list get empty, the Proxy might dismiss the service object and free the
+     underlying system resources. 
+
+Implementation
+1. If there's no pre-existing service interface, create one to make Proxy and
+   service objects interchangeable.
+2. Create the Proxy class. It should have a field of storing a reference to the service.
+   Usually Proxies create and manage the whole lifecycle of their services.
+3. Implement the proxy methods according to their purposes. In most cases,
+   after doing some work, the Proxy should delegate the work to the service object.
+4. Consider introducing a creation method that decides whether the client gets a
+   Proxy or a real service.
+5. Consider implementing lazy initialization for the service object.
+
+Pros:
+- You can control and manage the service object without clients knowing about it.
+- The Proxy works even if the service object isn't ready.
+- Open/Closed Principle. You can introduce new Proxies without changing the
+  service or clients.
+
+Cons:
+- The overall complexity of the code increases.
+- The response from the service might get delayed.
+
+Relationship with Other Patterns
+- Facade is similar to Proxy in that both buffer a complex entity and initialize
+  it on its own. Unlike Facade, Proxy has the same interface as its service object,
+  which makes them interchangeable.
+- Adapter provides a different interface to the wrapped object,
+  Decorator provides an enhanced interface to the wrapped object,
+  Proxy provides the same interface to the wrapped object.
+- Decorator and Proxy have similar structures, but very different intents.
+  Both patterns are built on the composition, where one object is supposed to
+  delegate some of the work to another. The difference is that a Proxy usually
+  manages the lifecycle of its service object on its own, whereas the composition
+  of Decorator is always controlled by the client.

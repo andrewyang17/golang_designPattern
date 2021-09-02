@@ -1,0 +1,12 @@
+What is Template Method?
+- A high-level blueprint for an algorithm to be completed by inheritors.
+- Template Method allows you to define a skeleton of an algorithm in a base class
+  and let subclasses override the steps without changing the overall algorithm's structure.
+- It's used when the steps of a particular operation are the same,
+  but these steps’ implementation may differ.
+- Go doesn't has Inheritance, so it somehow almost similar to Strategy pattern.
+- It not necessary has to be a struct, it can be just a freestanding function which takes
+  the implementation (interface) as a parameter.
+
+Reference
+- https://refactoring.guru/design-patterns/template-method

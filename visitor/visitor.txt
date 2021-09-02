@@ -1,0 +1,23 @@
+What is Visitor?
+- Visitor lets you separate algorithms from the objects on which they operate.
+- A pattern where a component (Visitor) is allowed to traverse/visit the entire hierarchy
+  of types. Implemented by propagating a single Accept() method throughout the entire
+  hierarchy.
+- It allows non-intrusive addition of functionality to hierarchies.
+- It allows adding new behaviors to existing class hierarchy without altering any
+  existing code.
+- It lets you add behavior to a struct without actually modifying the struct.
+- It suggests that you place the new behavior into a separate class called Visitor,
+  instead of trying to integrate it into existing classes. The original object that had
+  to perform the behavior is now passed to one of the visitor's methods as an argument,
+  providing the method access to all necessary data contained within the object.
+- Dispatch - which function to call?
+           - selection of which method to call
+           - it's a decision which is taken at compile time
+           - Single Dispatch: depends on name of request and type of receiver
+           - Double Dispatch: depends on name of request and type of two receivers
+                              (type of visitor, type of element being visited)
+
+Reference
+- https://refactoring.guru/design-patterns/visitor
+- https://refactoring.guru/design-patterns/visitor/go/example
